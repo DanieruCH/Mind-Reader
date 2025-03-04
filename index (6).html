@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembaca Pikiran</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            background-color: #0a0a0a;
+            color: #00eaff;
+            margin: 50px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 238, 255, 0.6);
+            display: inline-block;
+        }
+        h2 {
+            text-shadow: 0px 0px 10px #00eaff;
+        }
+        input {
+            padding: 10px;
+            font-size: 20px;
+            width: 250px;
+            text-align: center;
+            background: black;
+            border: 2px solid #00eaff;
+            color: #00eaff;
+            outline: none;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(45deg, #00eaff, #0055ff);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 0px 15px #00eaff;
+            transition: 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 25px #00eaff;
+        }
+        #hasil {
+            margin-top: 20px;
+            font-size: 25px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .loading {
+            font-size: 18px;
+            margin-top: 15px;
+            color: #ffcc00;
+            display: none;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 16px;
+            color: gray;
+            text-shadow: 0px 0px 10px gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🔮 Mesin Pembaca Pikiran 🔮</h2>
+        <p>Pikirkan sebuah angka, lalu ketik di bawah ini.</p>
+        <input type="number" id="angkaInput" placeholder="Masukkan angka">
+        <br>
+        <button onclick="bacaPikiran()">🔍 Baca Pikiran</button>
+        <p class="loading">Menganalisis pikiran... ⏳</p>
+        <p id="hasil"></p>
+    </div>
+
+    <p class="footer">by Danieru</p>
+
+    <audio id="soundEffect" src="https://www.fesliyanstudios.com/play-mp3/4386"></audio>
+
+    <script>
+        function bacaPikiran() {
+            let angka = document.getElementById("angkaInput").value;
+            let hasil = document.getElementById("hasil");
+            let loading = document.querySelector(".loading");
+            let sound = document.getElementById("soundEffect");
+
+            if (angka === "") {
+                hasil.innerHTML = "Kamu belum mengetik angka!";
+                hasil.style.opacity = "1";
+                return;
+            }
+
+            hasil.style.opacity = "0"; 
+            loading.style.display = "block"; 
+            setTimeout(() => {
+                loading.style.display = "none"; 
+                hasil.innerHTML = "🔮 Aku tahu! Kamu memikirkan angka <span style='color: #ffcc00;'>" + angka + "</span>!";
+                hasil.style.opacity = "1"; 
+                sound.play(); 
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
